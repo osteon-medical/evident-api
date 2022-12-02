@@ -10,7 +10,6 @@ Last Updated: 22nd November 2022
   * [Authentication](#authentication)
   * [Request / Order Object Schema](#request---order-object-schema)
   * [Comments Object Schema](#comments-object-schema)
-  * [Listing Pending Requests](#listing-pending-requests)
   * [Viewing Request Details](#viewing-request-details)
   * [Accepting a Request](#accepting-a-request)
   * [Uploading Design Files](#uploading-design-files)
@@ -70,48 +69,6 @@ Much of the request object has been modelled on the Evident API case object.
 | `CreatedAt` | `string` | ISO8601 timestamp of the time the comment was created. |
 | `Direction` | `string` | Either `INBOUND` or `OUTBOUND`. Outbound if from Osteon to Evident, inbound is Evident to Osteon. |
 | `From` | `string` | The name of the author. |
-
----
-
-## Listing Pending Requests
-
-Returns a list of requests for Evident to process. This includes new Evident orders along with redo requests.
-
-Once a request has been accepted, it will no longer appear in this list. You will need to implement a system to keep track of the `RequestId` for further processing.
-
-### Endpoint
-
-```http
-GET /api/v2/evident/
-```
-
-### Content Type
-
-```http
-application/json
-```
-
-### HTTP Responses
-
-| Status Code | Description |
-| :--- | :--- |
-| 200 | `OK` |
-
-### Example Success Response Body
-
-```json
-[
-	{
-		"RefId": "39432-A",
-		"RequestId": 3241,
-		"EvidentId": "",
-		"RequestedAt": "2022-11-22T14:34:08.233425",
-		"RedoRequested": false,
-		"RedoRequestedAt": null,
-		"CompletedAt": null
-	}
-]
-```
 
 ---
 
