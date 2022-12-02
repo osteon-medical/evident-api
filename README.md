@@ -11,7 +11,6 @@ Last Updated: 2nd December 2022
   * [Request / Order Object Schema](#request---order-object-schema)
   * [Comments Object Schema](#comments-object-schema)
   * [Viewing Request Details](#viewing-request-details)
-  * [Accepting a Request](#accepting-a-request)
   * [Uploading Design Files](#uploading-design-files)
   * [Adding Comments / Notes to a Request](#adding-comments---notes-to-a-request)
   * [Completing a Request](#completing-a-request)
@@ -113,85 +112,6 @@ application/json
 	"RedoRequestedAt": null,
 	"CompletedAt": null,
 	"AcceptedAt": null,
-	"RedoAcceptedAt": null,
-	"RedoNotes": null,
-	"Files": [
-		"https://storage.googleapis.com/oep-development/de362d_6541d7_UpperJaw.ply"
-	],
-	"Comments": [
-		{
-			"MessageID": "410af9c2-3ef6-47c0-9069-49264c46ad60",
-			"Message": "This is a test request.",
-			"CreatedAt": "2022-11-22T14:34:07.777611",
-			"Direction": "OUTBOUND",
-			"From": "Jeremy"
-		}
-	]
-}
-```
-
----
-
-## Accepting a Request
-
-Before a request can be actioned, it must be accepted by Evident. When accepting this request, the payload must include Evident's reference number `EvidentId`.
-
-### Endpoint
-
-```http
-POST /api/v2/evident/:RefId/accept/
-```
-
-### Content Type
-
-```http
-application/json
-```
-
-### Request Body Example
-
-```json
-{
-  "EvidentId": "12345678"
-}
-```
-
-### HTTP Responses
-
-| Status Code | Description |
-| :--- | :--- |
-| 200 | `OK` |
-| 404 | `Not Found - The request does not exist` |
-| 400 | `Bad Request - See payload for more details` |
-
-### Error Messages in Response Body
-
-| Message | Description |
-| :--- | :--- |
-| `Missing EvidentId.` | Evident's reference number for this request has not been supplied. |
-| `Request already completed.` | Request has already been marked as completed by Evident. |
-| `Request already accepted.` | Request has already been marked as accepted by Evident. |
-
-### Example Success Response Body
-
-```json
-{
-	"Rush": false,
-	"RefId": 3241,
-	"Units": null,
-	"Position": "anterior",
-	"DesignType": [
-		"1044",
-		"1100"
-	],
-	"Instruction": "### REFERENCE NUMBER: 39432-A ###\n\nFull Arch All on X:\n\nThis is a test request.",
-	"ScannerType": "3Shape",
-	"EvidentId": "12345678",
-	"RequestedAt": "2022-11-22T14:34:08.233425",
-	"RedoRequested": false,
-	"RedoRequestedAt": null,
-	"CompletedAt": null,
-	"AcceptedAt": "2022-11-22T14:49:05.508610",
 	"RedoAcceptedAt": null,
 	"RedoNotes": null,
 	"Files": [
